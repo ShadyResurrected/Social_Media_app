@@ -7,8 +7,11 @@ const morgan = require("morgan")
 const userRoute = require("./routes/users")
 const authRoute = require("./routes/auth")
 const postRoute = require("./routes/posts")
+var cors = require('cors')
 
 dotenv.config()
+
+app.use(cors())
 
 mongoose.set('strictQuery', true); // To resolve the warning of mongo version 7
 
