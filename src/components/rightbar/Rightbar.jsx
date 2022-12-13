@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
 
-import './rightbar.css'
+import "./rightbar.css";
 
-import { Users } from '../../dummyData'
-import Online from '../online/Online'
+import { Users } from "../../dummyData";
+import Online from "../online/Online";
 
-const rightbar = ({ profile }) => {
-
+const rightbar = ({ user }) => {
   const HomeRightbar = () => {
+    const PF = import.meta.env.VITE_PUBLIC_FOLDER;
     return (
       <>
         <div className="birthdayContainer">
-          <img className='birthdayImg' src="assets\gift.png" alt="" />
+          <img className="birthdayImg" src="assets\gift.png" alt="" />
           <span className="birthdayText">
             <b>Pola Foster</b> and <b>2 other friends</b> have a birthday today
           </span>
@@ -24,65 +24,88 @@ const rightbar = ({ profile }) => {
           ))}
         </ul>
       </>
-    )
-  }
-
+    );
+  };
 
   const ProfileRightbar = () => {
     return (
       <>
-      <h4 className='rightbarTitle'>User Information</h4>
-      <div className="rightbarInfo">
-        <div className="rightbarInfoItem">
-          <span className="rightbarInfoKey">City :</span>
-          <span className="rightbarInfoValue">New York</span>
+        <h4 className="rightbarTitle">User Information</h4>
+        <div className="rightbarInfo">
+          <div className="rightbarInfoItem">
+            <span className="rightbarInfoKey">City :</span>
+            <span className="rightbarInfoValue">{user.city}</span>
+          </div>
+          <div className="rightbarInfoItem">
+            <span className="rightbarInfoKey">From :</span>
+            <span className="rightbarInfoValue">{user.from}</span>
+          </div>
+          <div className="rightbarInfoItem">
+            <span className="rightbarInfoKey">Relationship :</span>
+            <span className="rightbarInfoValue">{user.relationship === 0 ? "Single" : "Married"}</span>
+          </div>
         </div>
-        <div className="rightbarInfoItem">
-          <span className="rightbarInfoKey">From :</span>
-          <span className="rightbarInfoValue">India</span>
+        <h4 className="rightbarTitle">User Friends</h4>
+        <div className="rightbarFollowings">
+          <div className="rightbarFollowing">
+            <img
+              src="assets\person\1.jpeg"
+              alt=""
+              className="rightbarFollowingImg"
+            />
+            <span className="rightbarFollowingName">John Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img
+              src="assets\person\1.jpeg"
+              alt=""
+              className="rightbarFollowingImg"
+            />
+            <span className="rightbarFollowingName">John Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img
+              src="assets\person\1.jpeg"
+              alt=""
+              className="rightbarFollowingImg"
+            />
+            <span className="rightbarFollowingName">John Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img
+              src="assets\person\1.jpeg"
+              alt=""
+              className="rightbarFollowingImg"
+            />
+            <span className="rightbarFollowingName">John Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img
+              src="assets\person\1.jpeg"
+              alt=""
+              className="rightbarFollowingImg"
+            />
+            <span className="rightbarFollowingName">John Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img
+              src="assets\person\1.jpeg"
+              alt=""
+              className="rightbarFollowingImg"
+            />
+            <span className="rightbarFollowingName">John Carter</span>
+          </div>
         </div>
-        <div className="rightbarInfoItem">
-          <span className="rightbarInfoKey">Relationship :</span>
-          <span className="rightbarInfoValue">Single</span>
-        </div>
-      </div>
-      <h4 className='rightbarTitle'>User Friends</h4>
-      <div className="rightbarFollowings">
-        <div className="rightbarFollowing">
-          <img src="assets\person\1.jpeg" alt="" className='rightbarFollowingImg'/>
-          <span className="rightbarFollowingName">John Carter</span>
-        </div>
-        <div className="rightbarFollowing">
-          <img src="assets\person\1.jpeg" alt="" className='rightbarFollowingImg'/>
-          <span className="rightbarFollowingName">John Carter</span>
-        </div>
-        <div className="rightbarFollowing">
-          <img src="assets\person\1.jpeg" alt="" className='rightbarFollowingImg'/>
-          <span className="rightbarFollowingName">John Carter</span>
-        </div>
-        <div className="rightbarFollowing">
-          <img src="assets\person\1.jpeg" alt="" className='rightbarFollowingImg'/>
-          <span className="rightbarFollowingName">John Carter</span>
-        </div>
-        <div className="rightbarFollowing">
-          <img src="assets\person\1.jpeg" alt="" className='rightbarFollowingImg'/>
-          <span className="rightbarFollowingName">John Carter</span>
-        </div>
-        <div className="rightbarFollowing">
-          <img src="assets\person\1.jpeg" alt="" className='rightbarFollowingImg'/>
-          <span className="rightbarFollowingName">John Carter</span>
-        </div>
-      </div>
       </>
-    )
-  }
+    );
+  };
   return (
-    <div className='rightbar'>
+    <div className="rightbar">
       <div className="rightbarWrapper">
-       {profile ?  <ProfileRightbar/> : <HomeRightbar/>}
+        {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default rightbar
+export default rightbar;
