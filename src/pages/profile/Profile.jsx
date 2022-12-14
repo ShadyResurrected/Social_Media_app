@@ -8,17 +8,21 @@ import './profile.css'
 import { useEffect } from 'react'
 import axios from 'axios'
 
+import { useParams } from 'react-router'
+
 const Profile = () => {
 
     const PF = import.meta.env.VITE_PUBLIC_FOLDER
     const [user, setUser] = useState({})
+    const username = useParams().username // accepts from parameter
+
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get('http://localhost:8800/api/users?username=JohnDoe')
+            const res = await axios.get(`/api/users?username=${username}`)
             setUser(res.data)
         }
         fetchUser()
-    }, [])
+    }, [username])
     return (
         <>
             <Topbar />
@@ -36,7 +40,7 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className="profileRightBottom">
-                        <Feed username="JohnDoe"/>
+                        <Feed username={username}/>
                         <Rightbar user={user}/>
                     </div>
                 </div>
