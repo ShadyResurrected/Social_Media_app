@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Share from "../share/Share";
 import Post from "../post/Post";
 
 import axios from "axios";
 
 import "./feed.css";
+import { AuthContext } from "../../context/AuthContext";
 
 const feed = ({ username }) => {
   const [posts, setPosts] = useState([]);
+  const{user} = useContext(AuthContext)
 
   // Empty array as a third parameter means run this useEffect hook only once
   useEffect(() => {
@@ -17,12 +19,12 @@ const feed = ({ username }) => {
             "/api/posts/profile/" + username
           )
         : await axios.get(
-            "/api/posts/timeline/6396b6990b8f7dd4e8151a7a"
+            "/api/posts/timeline/" + user._id
           );
       setPosts(res.data);
     };
     fetchPosts();
-  }, [username]);
+  }, [username,user._id]);
 
   return (
     <div className="feed">

@@ -4,7 +4,7 @@ import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate  } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
@@ -20,14 +20,14 @@ function App() {
           <Route
             exact
             path="/login"
-            element={<Login />}
+            element={user ? <Navigate to="/"/> : <Login />}
           />
         </Routes>
         <Routes>
           <Route
             exact
             path="/register"
-            element={<Register />}
+            element={user ? <Navigate to="/"/> : <Register />}
           />
         </Routes>
         <Routes>
