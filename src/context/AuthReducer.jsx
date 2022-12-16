@@ -20,9 +20,29 @@ const AuthReducer = (state, action) => {
         isFetching: false,
         error: action.payload,
       };
+
+    case "FOLLOW":
+      return {
+        ...state, // Copy paste all the previous states
+        user: {
+          ...state.user,
+          following: [...state.user.following, action.payload],
+        },
+      };
+
+    case "UNFOLLOW":
+      return {
+        ...state, // Copy paste all the previous states
+        user: {
+          ...state.user,
+          following: state.user.following.filter(
+            (following) => following !== action.payload
+          ),
+        },
+      };
     default:
       return state;
   }
 };
 
-export default AuthReducer
+export default AuthReducer;

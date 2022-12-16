@@ -6,6 +6,7 @@ import PermMediaIcon from "@mui/icons-material/PermMedia";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 import axios from "axios";
 
@@ -29,9 +30,10 @@ const Share = () => {
 
     if (file) {
       const data = new FormData();
-      const fileName = Date.now() + file.name;
+      const fileName = file.name;
       data.append("file", file);
       data.append("name", fileName);
+      console.log(data);
       newPost.img = fileName; // In the databse image is stored in img field
       try {
         await axios.post("api/upload", data); // Uploading data on database
@@ -69,6 +71,19 @@ const Share = () => {
           />
         </div>
         <hr className="shareHr" />
+        {file && (
+          <div className="shareImgContainer">
+            <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
+            <CancelIcon
+              sx={{
+                color: "white",
+                fontSize: 32,
+              }}
+              className="shareCancelImg"
+              onClick={() => setFile(null)}
+            />
+          </div>
+        )}
         <form className="shareBottom" onSubmit={submitHandler}>
           <div className="shareOptions">
             <label htmlFor="file" className="shareOption">
